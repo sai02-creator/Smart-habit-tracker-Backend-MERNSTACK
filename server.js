@@ -5,7 +5,7 @@ console.log("ENV TEST:", process.env.MONGODB_URI);
 import express from "express";
 import cors from "cors";
 import habitRoutes from "./routes/habits.js";
-import connectDB from "./config/db.js";
+import{ connectDB }from "./config/db.js";
 import errorHandler from "./middleware/errorHandler.js";
 import authRoutes from "./routes/authRoutes.js";
 import logRoutes from "./routes/logs.js";
