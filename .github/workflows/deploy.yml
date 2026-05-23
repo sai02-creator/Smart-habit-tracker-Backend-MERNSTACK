@@ -1,0 +1,27 @@
+name: Deploy Backend
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@master
+
+        with:
+          host: 3.25.50.50
+          username: ubuntu
+          key: ${{ secrets.EC2_SSH_KEY }}
+
+          script: |
+            cd ~/Smart-habit-tracker-backend-MERNSTACK
+            git pull origin main
+            docker stop smart-habit-backend-container || true
+            docker rm smart-habit-backend-container || true
+            docker build -t smart-habit-backend .
+            docker run -d --name smart-habit-backend-container -p 3000:3000 --env-file .env smart-habit-backend
