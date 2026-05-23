@@ -1,67 +1,24 @@
 import "dotenv/config";
 
-console.log("ENV TEST:", process.env.MONGODB_URI);
+import app from "./app.js";
+import { connectDB } from "./config/db.js";
 
-import express from "express";
-import cors from "cors";
-import habitRoutes from "./routes/habits.js";
-import{ connectDB }from "./config/db.js";
-import errorHandler from "./middleware/errorHandler.js";
-import authRoutes from "./routes/authRoutes.js";
-import logRoutes from "./routes/logs.js";
-import aiRoutes from "./routes/ai.js";
+const PORT = 3000;
 
-const app = express();
+const startServer = async () => {
+  try {
+    console.log("Starting server...");
 
-const allowedOrigins = (process.env.CLIENT_URL || "")
-  .split(" ")
-  .map((s) => s.trim())
-  .filter(Boolean);
+    await connectDB();
 
-const corsOptions = {
-  origin(origin, cb) {
-    // Allow requests with no origin (curl, same-origin, server-to-server)
-    if (!origin) return cb(null, true);
+    console.log("MongoDB Connected");
 
-    // Allow any localhost / 127.0.0.1 origin in development
-    if (/^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)) {
-      return cb(null, true);
-    }
-
-    // Allow anything explicitly listed in CLIENT_URL
-    if (allowedOrigins.includes(origin)) {
-      return cb(null, true);
-    }
-
-    return cb(new Error(`Origin ${origin} not allowed by CORS`));
-  },
-
-  credentials: true,
-
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-
-  allowedHeaders: ["Content-Type", "Authorization"],
+    app.listen(PORT, "0.0.0.0", () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+  } catch (error) {
+    console.error("SERVER START ERROR:", error);
+  }
 };
 
-app.use(cors(corsOptions));
-
-app.use(express.json({ limit: "1mb" }));
-
-app.get("/api/health", (req, res) =>
-  res.json({ status: "ok", time: new Date().toISOString() })
-);
-
-// Mount auth routes
-app.use("/api/auth", authRoutes);
-app.use("/api/habits", habitRoutes);
-app.use("/api/logs", logRoutes);
-app.use("/api/ai", aiRoutes);
-app.use(errorHandler);
-
-const PORT = process.env.PORT || 8000;
-
-connectDB().then(() => {
-  app.listen(PORT, () =>
-    console.log(`Server running on http://localhost:${PORT}`)
-  );
-});
+startServer();
