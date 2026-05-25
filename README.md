@@ -24,6 +24,14 @@
 
 ---
 
+# 🌍 Live Demo
+
+## Frontend
+
+http://smart-habbit-tracker-frontend.s3-website-ap-southeast-2.amazonaws.com
+
+---
+
 # 📌 Project Overview
 
 Smart Habit Tracker is a full-stack MERN application built to help users create, manage, and track habits with a clean and responsive user experience.
@@ -35,7 +43,8 @@ This project evolved from a standard MERN application into a production-style cl
 - Nginx reverse proxy configuration
 - MongoDB Atlas integration
 - GitHub Actions CI/CD automation
-- CloudFront frontend delivery
+- S3 frontend hosting
+- PM2 process management
 
 ---
 
@@ -44,7 +53,7 @@ This project evolved from a standard MERN application into a production-style cl
 ```text
 Frontend (React + Vite)
         ↓
-AWS S3 + CloudFront
+AWS S3 Static Website Hosting
         ↓
 Nginx Reverse Proxy
         ↓
@@ -72,6 +81,8 @@ MongoDB Atlas
 ✅ AWS EC2 Cloud Hosting
 
 ✅ Nginx Reverse Proxy
+
+✅ PM2 Process Management
 
 ✅ GitHub Actions CI/CD
 
@@ -101,9 +112,9 @@ MongoDB Atlas
 
 - AWS EC2
 - AWS S3
-- AWS CloudFront
 - Docker
 - Nginx
+- PM2
 - GitHub Actions
 - MongoDB Atlas
 
@@ -161,6 +172,17 @@ Benefits:
 
 ---
 
+## ⚡ PM2 Process Management
+
+Configured PM2 for:
+
+- Background server execution
+- Automatic restart on crashes
+- Persistent backend uptime
+- Production process management
+
+---
+
 ## 🔄 GitHub Actions CI/CD
 
 Automated deployment pipeline:
@@ -188,10 +210,10 @@ Successfully implemented:
 - Dockerized Node.js backend
 - AWS EC2 deployment
 - Nginx reverse proxy
+- PM2 production process management
 - GitHub Actions automation
 - MongoDB Atlas cloud integration
-- S3 frontend hosting
-- CloudFront CDN delivery
+- AWS S3 frontend hosting
 - Linux server administration
 - Production deployment workflows
 
@@ -261,6 +283,7 @@ docker run --env-file .env -p 3000:3000 smart-habit-backend
 - AWS cloud deployment
 - Linux server management
 - Nginx reverse proxy configuration
+- PM2 production process management
 - GitHub Actions CI/CD
 - MongoDB Atlas integration
 - SSH authentication
@@ -273,7 +296,7 @@ docker run --env-file .env -p 3000:3000 smart-habit-backend
 # 📈 Future Improvements
 
 - HTTPS SSL Setup
-- Domain Configuration
+- Custom Domain Configuration
 - Kubernetes Deployment
 - Monitoring & Logging
 - Multi-container Docker Compose Setup
@@ -289,11 +312,11 @@ docker run --env-file .env -p 3000:3000 smart-habit-backend
 
 🔗 LinkedIn
 
-[https://www.linkedin.com/in/sai-chaitanya-73b598284/](https://www.linkedin.com/in/sai-chaitanya-73b598284/)
+https://www.linkedin.com/in/sai-chaitanya-73b598284/
 
 🔗 GitHub
 
-[https://github.com/sai02-creator](https://github.com/sai02-creator)
+https://github.com/sai02-creator
 
 ---
 
