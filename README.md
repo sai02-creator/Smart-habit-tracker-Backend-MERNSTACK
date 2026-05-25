@@ -308,7 +308,7 @@ docker run --env-file .env -p 3000:3000 smart-habit-backend
 
 ## Sai Chaitanya Gaddam
 
-### Full Stack Engineer | MERN Stack Developer | Cloud & DevOps Enthusiast
+### Full Stack Engineer | AI-Integrated Applications | Cloud & DevOps
 
 🔗 LinkedIn
 
